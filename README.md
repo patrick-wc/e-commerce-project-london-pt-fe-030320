@@ -4,6 +4,8 @@ You will be building the website for a furniture store. The mockups have been cr
 
 The product data is provided in `products.js`.
 
+[Link to mockups](https://www.figma.com/file/P6jTYHEAFjm7Dm6d0E9oMr/E_COM)
+
 ## Required pages
 
 - Desktop
