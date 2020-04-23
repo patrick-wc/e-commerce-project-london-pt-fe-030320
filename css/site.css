@@ -140,6 +140,10 @@ body {
         justify-content: flex-start;
     }
 
+    .c-header__menu-btn--nav {
+        order: 0;
+    }
+
     .c-header__menu-btn--nav--mobile {
         display: none;
     }
