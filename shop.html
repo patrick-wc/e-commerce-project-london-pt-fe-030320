@@ -132,56 +132,198 @@
         </form>
       </header>
 
-      <div class="c-carousel">
-        <figure class="c-carousel__item c-carousel__item--01">
-          <img
-            src="images/home-carousel-1.jpg"
-            width="1326"
-            height="560"
-            alt="Sofa"
-          />
-          <figcaption>
-            <h1 class="c-carousel__title">
-              Create Your Calm
-            </h1>
-            <h2 class="c-carousel__sub-title">
-              Relax right here
-            </h2>
-          </figcaption>
-        </figure>
-        <figure class="c-carousel__item c-carousel__item--02">
-          <img
-            src="images/home-carousel-1.jpg"
-            width="1326"
-            height="560"
-            alt="Sofa"
-          />
-          <figcaption>
-            <h2 class="c-carousel__title">
-              Create Your Calm 2
-            </h2>
-            <h3 class="c-carousel__sub-title">
-              Relax right here 2
-            </h3>
-          </figcaption>
-        </figure>
-        <figure class="c-carousel__item c-carousel__item--03">
-          <img
-            src="images/home-carousel-1.jpg"
-            width="1326"
-            height="560"
-            alt="Sofa"
-          />
-          <figcaption>
-            <h2 class="c-carousel__title">
-              Create Your Calm 3
-            </h2>
-            <h3 class="c-carousel__sub-title">
-              Relax right here 3
-            </h3>
-          </figcaption>
-        </figure>
-      </div>
+      <section class="grid">
+        <aside class="filters">
+          <form action="">
+            <p class="filters__title">
+              Filter By
+            </p>
+
+            <button class="filters__filter-btn">
+              Color <img src="images/icons/category-down.svg" alt="arrow" />
+            </button>
+            <ul class="filters__filter-list filters__filter-list--open">
+              <li>
+                <input type="checkbox" id="gray" name="gray" value="gray" />
+                <label for="gray">Gray</label><br />
+              </li>
+              <li>
+                <input type="checkbox" id="brown" name="brown" value="brown" />
+                <label for="brown">Brown</label><br />
+              </li>
+              <li>
+                <input type="checkbox" id="black" name="black" value="black" />
+                <label for="black">Black</label><br />
+              </li>
+            </ul>
+
+            <label class="range__label">
+              Price Range
+              </label>
+              <input
+                class="range__input"
+                type="range"
+                min="0"
+                max="1000"
+                value="4"
+                step="1"
+              />
+            </label>
+            <div class="range__scale">
+              <p class="range__scale--low">
+                $0
+              </p>
+              <p class="range__scale--high">
+                $1000
+              </p>
+            </div>
+          </form>
+        </aside>
+        <section class="products-pagination">
+          <ul class="products">
+            <li class="product">
+              <img
+                class="product__image"
+                src="images/products/sofa-1.jpg"
+                alt="Droid"
+              />
+              <a class="product__link" href=""
+                ><h2 class="product__title">Droid</h2></a
+              >
+              <div class="product__details">
+                <p class="product__cat">Sofa</p>
+                <p class="product__price">£2,600</p>
+              </div>
+              <button class="product__add">
+                <img
+                  src="images/icons/cart.svg"
+                  width="24"
+                  height="24"
+                  alt="add to cart"
+                />
+              </button>
+            </li>
+            <li class="product">
+              <img
+                class="product__image"
+                src="images/products/sofa-1.jpg"
+                alt=""
+              />
+              <a class="product__link" href=""
+                ><h2 class="product__title">Corner</h2></a
+              >
+              <div class="product__details">
+                <p class="product__cat">Sofa</p>
+                <p class="product__price">£2,600</p>
+              </div>
+              <button class="product__add">
+                <img
+                  src="images/icons/cart.svg"
+                  width="24"
+                  height="24"
+                  alt="add to cart"
+                />
+              </button>
+            </li>
+            <li class="product">
+              <img
+                class="product__image"
+                src="images/products/sofa-1.jpg"
+                alt=""
+              />
+              <a class="product__link" href=""
+                ><h2 class="product__title">Celis</h2></a
+              >
+              <div class="product__details">
+                <p class="product__cat">Sofa</p>
+                <p class="product__price">£2,600</p>
+              </div>
+              <button class="product__add">
+                <img
+                  src="images/icons/cart.svg"
+                  width="24"
+                  height="24"
+                  alt="add to cart"
+                />
+              </button>
+            </li>
+            <li class="product">
+              <img
+                class="product__image"
+                src="images/products/sofa-1.jpg"
+                alt=""
+              />
+              <a class="product__link" href=""
+                ><h2 class="product__title">Celis</h2></a
+              >
+              <div class="product__details">
+                <p class="product__cat">Sofa</p>
+                <p class="product__price">£2,600</p>
+              </div>
+              <button class="product__add">
+                <img
+                  src="images/icons/cart.svg"
+                  width="24"
+                  height="24"
+                  alt="add to cart"
+                />
+              </button>
+            </li>
+            <li class="product">
+              <img
+                class="product__image"
+                src="images/products/sofa-1.jpg"
+                alt=""
+              />
+              <a class="product__link" href=""
+                ><h2 class="product__title">Yenings</h2></a
+              >
+              <div class="product__details">
+                <p class="product__cat">Sofa</p>
+                <p class="product__price">£2,600</p>
+              </div>
+              <button class="product__add">
+                <img
+                  src="images/icons/cart.svg"
+                  width="24"
+                  height="24"
+                  alt="add to cart"
+                />
+              </button>
+            </li>
+            <li class="product">
+              <img
+                class="product__image"
+                src="images/products/sofa-1.jpg"
+                alt=""
+              />
+              <a class="product__link" href=""
+                ><h2 class="product__title">Allisonville</h2></a
+              >
+              <div class="product__details">
+                <p class="product__cat">Sofa</p>
+                <p class="product__price">£2,600</p>
+              </div>
+              <button class="product__add">
+                <img
+                  src="images/icons/cart.svg"
+                  width="24"
+                  height="24"
+                  alt="add to cart"
+                />
+              </button>
+            </li>
+          </ul>
+          <ul class="pagination">
+            <li><a class="active" href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href="">5</a></li>
+            <li><a href="">></a></li>
+          </ul>
+        </section>
+      </section>
     </main>
 
     <footer class="c-footer">
@@ -234,6 +376,6 @@
 
     <script src="products.js"></script>
     <!-- <script src="dist/index.min.js"></script> -->
-    <script src="src/scripts/index.js"></script>
+    <script src="src/scripts/shop.js"></script>
   </body>
 </html>
