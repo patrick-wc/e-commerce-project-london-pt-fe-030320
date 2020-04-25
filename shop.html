@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOFAS - Shop</title>
+    <link rel="stylesheet" href="css/a-modern-css-reset.css" />
+    <link rel="stylesheet" href="dist/css/site.css" />
+  </head>
+  <body>
+    <header class="c-header">
+      <button class="c-header__menu-btn c-header__menu-btn--nav">
+        <svg
+          class="c-header__menu-btn--nav--mobile"
+          width="24"
+          height="16"
+          viewBox="0 0 24 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M23 2H1C0.4 2 0 1.6 0 1C0 0.4 0.4 0 1 0H23C23.6 0 24 0.4 24 1C24 1.6 23.6 2 23 2ZM23 9H1C0.4 9 0 8.6 0 8C0 7.4 0.4 7 1 7H23C23.6 7 24 7.4 24 8C24 8.6 23.6 9 23 9ZM1 16H23C23.6 16 24 15.6 24 15C24 14.4 23.6 14 23 14H1C0.4 14 0 14.4 0 15C0 15.6 0.4 16 1 16Z"
+            fill="#1B1B1B"
+          />
+        </svg>
+
+        <svg
+          class="c-header__menu-btn--nav--desktop"
+          width="42"
+          height="21"
+          viewBox="0 0 42 21"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 0H42V3H0V0ZM0 9H42V12H0V9ZM42 18H0V21H42V18Z"
+            fill="#22232B"
+          />
+        </svg>
+      </button>
+      <nav class="c-header__nav">
+        <ul>
+          <li>
+            <a class="c-header__nav__link" href="index.html">Home</a>
+          </li>
+          <li>
+            <a
+              class="c-header__nav__link c-header__nav__link--active"
+              href="shop.html"
+              >Shop</a
+            >
+          </li>
+          <li>
+            <a class="c-header__nav__link" href="magazine.html">Magazine</a>
+          </li>
+          <li>
+            <button
+              class="c-header__menu-btn c-header__menu-btn--cart c-header__menu-btn--cart--has-items"
+            >
+              <svg
+                width="25"
+                height="26"
+                viewBox="0 0 25 26"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L3.72727 4.29032V14.1613L2.09091 18H25"
+                  stroke="#131313"
+                  stroke-width="2"
+                />
+                <path
+                  d="M4 4H23L19.7429 14H4"
+                  stroke="#131313"
+                  stroke-width="2"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M4 25C5.10457 25 6 24.1046 6 23C6 21.8954 5.10457 21 4 21C2.89543 21 2 21.8954 2 23C2 24.1046 2.89543 25 4 25Z"
+                  stroke="#131313"
+                  stroke-width="2"
+                  stroke-linecap="square"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M22 25C23.1046 25 24 24.1046 24 23C24 21.8954 23.1046 21 22 21C20.8954 21 20 21.8954 20 23C20 24.1046 20.8954 25 22 25Z"
+                  stroke="#131313"
+                  stroke-width="2"
+                  stroke-linecap="square"
+                />
+                <rect x="12" y="6" width="2" height="6" fill="#1B1B1B" />
+                <rect
+                  x="16"
+                  y="8"
+                  width="2"
+                  height="6"
+                  transform="rotate(90 16 8)"
+                  fill="#1B1B1B"
+                />
+              </svg>
+            </button>
+          </li>
+          <li>
+            <a
+              class="c-header__nav__link c-header__nav__link--login"
+              href="login.html"
+              >Login</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <header class="c-search-filters">
+        <form class="c-search-filters__search" action="">
+          <input type="search" />
+        </form>
+        <form class="c-search-filters__filters" action="">
+          <select name="" id="">
+            <option value="">Best Match</option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+          </select>
+        </form>
+      </header>
+
+      <div class="c-carousel">
+        <figure class="c-carousel__item c-carousel__item--01">
+          <img
+            src="images/home-carousel-1.jpg"
+            width="1326"
+            height="560"
+            alt="Sofa"
+          />
+          <figcaption>
+            <h1 class="c-carousel__title">
+              Create Your Calm
+            </h1>
+            <h2 class="c-carousel__sub-title">
+              Relax right here
+            </h2>
+          </figcaption>
+        </figure>
+        <figure class="c-carousel__item c-carousel__item--02">
+          <img
+            src="images/home-carousel-1.jpg"
+            width="1326"
+            height="560"
+            alt="Sofa"
+          />
+          <figcaption>
+            <h2 class="c-carousel__title">
+              Create Your Calm 2
+            </h2>
+            <h3 class="c-carousel__sub-title">
+              Relax right here 2
+            </h3>
+          </figcaption>
+        </figure>
+        <figure class="c-carousel__item c-carousel__item--03">
+          <img
+            src="images/home-carousel-1.jpg"
+            width="1326"
+            height="560"
+            alt="Sofa"
+          />
+          <figcaption>
+            <h2 class="c-carousel__title">
+              Create Your Calm 3
+            </h2>
+            <h3 class="c-carousel__sub-title">
+              Relax right here 3
+            </h3>
+          </figcaption>
+        </figure>
+      </div>
+    </main>
+
+    <footer class="c-footer">
+      <div class="c-footer__social">
+        <a href="#" class="c-footer__social-link"
+          ><img
+            src="images/icons/instagram.svg"
+            width="23"
+            height="23"
+            alt="instagram"
+        /></a>
+        <a href="#" class="c-footer__social-link"
+          ><img
+            src="images/icons/facebook.svg"
+            width="12"
+            height="21"
+            alt="facebook"
+        /></a>
+        <a href="#" class="c-footer__social-link"
+          ><img
+            src="images/icons/twitter.svg"
+            width="23"
+            height="20"
+            alt="twitter"
+        /></a>
+      </div>
+      <nav class="c-footer__nav">
+        <ul>
+          <li>
+            <a class="c-footer__nav-link" href="about-us.html">About Us</a>
+          </li>
+          <li>
+            <a class="c-footer__nav-link" href="how-we-can-help.html"
+              >How Can We Help?</a
+            >
+          </li>
+          <li>
+            <a class="c-footer__nav-link" href="shop-by-room.html"
+              >Shop by Room</a
+            >
+          </li>
+          <li>
+            <a class="c-footer__nav-link" href="shop-by-style.html"
+              >Shop by Style</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <script src="products.js"></script>
+    <!-- <script src="dist/index.min.js"></script> -->
+    <script src="src/scripts/index.js"></script>
+  </body>
+</html>

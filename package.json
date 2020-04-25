@@ -1,0 +1,36 @@
+{
+  "name": "patrick_wc-codersinhoods-ecommerce-project",
+  "version": "1.0.0",
+  "description": "You will be building the website for a furniture store. The mockups have been created by professional web designers and are exactly the type of thing you'll be given in your career as a developer.",
+  "main": "gulpfile.babel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrick-wc/e-commerce-project-london-pt-fe-030320.git"
+  },
+  "author": "Patrick Whitty-Clarke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrick-wc/e-commerce-project-london-pt-fe-030320/issues"
+  },
+  "homepage": "https://github.com/patrick-wc/e-commerce-project-london-pt-fe-030320#readme",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/register": "^7.9.0",
+    "browser-sync": "^2.26.7",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp4-run-sequence": "^1.0.1",
+    "sass-mq": "^5.0.1"
+  }
+}

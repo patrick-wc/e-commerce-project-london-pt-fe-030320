@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SOFAS</title>
     <link rel="stylesheet" href="css/a-modern-css-reset.css" />
-    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="dist/css/site.css" />
   </head>
   <body>
     <header class="c-header">
@@ -45,7 +45,11 @@
       <nav class="c-header__nav">
         <ul>
           <li>
-            <a class="c-header__nav__link" href="index.html">Home</a>
+            <a
+              class="c-header__nav__link c-header__nav__link--active"
+              href="index.html"
+              >Home</a
+            >
           </li>
           <li>
             <a class="c-header__nav__link" href="shop.html">Shop</a>
@@ -113,6 +117,123 @@
       </nav>
     </header>
 
+    <main>
+      <header class="c-search-filters">
+        <form class="c-search-filters__search" action="">
+          <input type="search" />
+        </form>
+        <form class="c-search-filters__filters" action="">
+          <select name="" id="">
+            <option value="">Best Match</option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+          </select>
+        </form>
+      </header>
+
+      <div class="c-carousel">
+        <figure class="c-carousel__item c-carousel__item--01">
+          <img
+            src="images/home-carousel-1.jpg"
+            width="1326"
+            height="560"
+            alt="Sofa"
+          />
+          <figcaption>
+            <h1 class="c-carousel__title">
+              Create Your Calm
+            </h1>
+            <h2 class="c-carousel__sub-title">
+              Relax right here
+            </h2>
+          </figcaption>
+        </figure>
+        <figure class="c-carousel__item c-carousel__item--02">
+          <img
+            src="images/home-carousel-1.jpg"
+            width="1326"
+            height="560"
+            alt="Sofa"
+          />
+          <figcaption>
+            <h2 class="c-carousel__title">
+              Create Your Calm 2
+            </h2>
+            <h3 class="c-carousel__sub-title">
+              Relax right here 2
+            </h3>
+          </figcaption>
+        </figure>
+        <figure class="c-carousel__item c-carousel__item--03">
+          <img
+            src="images/home-carousel-1.jpg"
+            width="1326"
+            height="560"
+            alt="Sofa"
+          />
+          <figcaption>
+            <h2 class="c-carousel__title">
+              Create Your Calm 3
+            </h2>
+            <h3 class="c-carousel__sub-title">
+              Relax right here 3
+            </h3>
+          </figcaption>
+        </figure>
+      </div>
+    </main>
+
+    <footer class="c-footer">
+      <div class="c-footer__social">
+        <a href="#" class="c-footer__social-link"
+          ><img
+            src="images/icons/instagram.svg"
+            width="23"
+            height="23"
+            alt="instagram"
+        /></a>
+        <a href="#" class="c-footer__social-link"
+          ><img
+            src="images/icons/facebook.svg"
+            width="12"
+            height="21"
+            alt="facebook"
+        /></a>
+        <a href="#" class="c-footer__social-link"
+          ><img
+            src="images/icons/twitter.svg"
+            width="23"
+            height="20"
+            alt="twitter"
+        /></a>
+      </div>
+      <nav class="c-footer__nav">
+        <ul>
+          <li>
+            <a class="c-footer__nav-link" href="about-us.html">About Us</a>
+          </li>
+          <li>
+            <a class="c-footer__nav-link" href="how-we-can-help.html"
+              >How Can We Help?</a
+            >
+          </li>
+          <li>
+            <a class="c-footer__nav-link" href="shop-by-room.html"
+              >Shop by Room</a
+            >
+          </li>
+          <li>
+            <a class="c-footer__nav-link" href="shop-by-style.html"
+              >Shop by Style</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
     <script src="products.js"></script>
+    <!-- <script src="dist/index.min.js"></script> -->
+    <script src="src/scripts/index.js"></script>
   </body>
 </html>
