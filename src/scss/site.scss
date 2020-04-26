@@ -240,7 +240,7 @@ main,
 .c-carousel__items {
   display: flex;
   align-items: center;
-  transition: transform ease-in-out;
+  transition: transform 0.35s ease-in-out;
 }
 
 .c-carousel__item {
@@ -480,6 +480,7 @@ main,
       margin-left: 3px;
       padding: 6px 0;
       width: calc(100% - 20px);
+      text-transform: capitalize;
     }
   }
 }

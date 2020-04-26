@@ -263,7 +263,7 @@ main,
 .c-carousel__items {
   display: flex;
   align-items: center;
-  transition: transform ease-in-out; }
+  transition: transform 0.35s ease-in-out; }
 
 .c-carousel__item {
   position: relative;
@@ -454,7 +454,8 @@ main,
     .filters__filter-list li label {
       margin-left: 3px;
       padding: 6px 0;
-      width: calc(100% - 20px); }
+      width: calc(100% - 20px);
+      text-transform: capitalize; }
 
 .filters__filter-list--open {
   display: block; }

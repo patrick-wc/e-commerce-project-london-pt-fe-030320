@@ -142,18 +142,36 @@
             <button class="filters__filter-btn">
               Color <img src="images/icons/category-down.svg" alt="arrow" />
             </button>
-            <ul class="filters__filter-list filters__filter-list--open">
+            <ul data-filter-tax="colors" class="filters__filter-list filters__filter-list--open">
               <li>
-                <input type="checkbox" id="gray" name="gray" value="gray" />
-                <label for="gray">Gray</label><br />
+                <input type="checkbox" id="gray" name="gray" value="gray">
+                <label for="gray">Gray</label>
               </li>
               <li>
-                <input type="checkbox" id="brown" name="brown" value="brown" />
-                <label for="brown">Brown</label><br />
+                <input type="checkbox" id="brown" name="brown" value="brown">
+                <label for="brown">Brown</label>
               </li>
               <li>
-                <input type="checkbox" id="black" name="black" value="black" />
-                <label for="black">Black</label><br />
+                <input type="checkbox" id="black" name="black" value="black">
+                <label for="black">Black</label>
+              </li>
+            </ul>
+
+            <button class="filters__filter-btn">
+              Category <img src="images/icons/category-down.svg" alt="arrow">
+            </button>
+            <ul data-filter-tax="types" class="filters__filter-list filters__filter-list--open">
+              <li>
+                <input type="checkbox" name="gray" value="gray">
+                <label for="gray">Gray</label>
+              </li>
+              <li>
+                <input type="checkbox" name="brown" value="brown">
+                <label for="brown">Brown</label>
+              </li>
+              <li>
+                <input type="checkbox" name="black" value="black">
+                <label for="black">Black</label>
               </li>
             </ul>
 
