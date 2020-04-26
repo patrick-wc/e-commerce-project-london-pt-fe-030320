@@ -136,8 +136,8 @@ const typesCheckboxContainer = document.querySelector(
 const userCheckedTaxes = {};
 // but couldn't work out how to do it without a data-type on the input, and some other steps
 
-const userCheckedColors = [];
-const userCheckedTypes = [];
+// const userCheckedColors = [];
+// const userCheckedTypes = [];
 
 const applyTaxEventListener = (input, tax) => {
   input.addEventListener("change", (event) => {
@@ -169,12 +169,141 @@ const applyTaxEventListener = (input, tax) => {
       userCheckedTaxes[tax] = checkedTax;
     }
 
-    // now we have an object with the types arrays, we want to render products with those selected taxTerms:
-    // so, first get array of products by those terms...
+    // if both userCheckedTaxes[key]'s are blank, re-render all products again (reset filter)
+    // otherwise, applyFilters to them:
 
-    // then render Products:
-    // renderProducts();
+    applyTaxes(userCheckedTaxes);
   });
+};
+
+const applyTaxes = (userCheckedTaxes) => {
+  filteredProducts = products.filter((product) => {
+    // iterate over object with keys, check if string (array) check if
+    // write separate function, which returns
+    return productDoesMatchSelections(product, userCheckedTaxes);
+  });
+
+  // create empty array for filtered products
+  let filteredProducts = {};
+
+  // loop over userCheckedTaxes with a for in loop for an object...
+  for (const key in userCheckedTaxes) {
+    if (userCheckedTaxes.hasOwnProperty(key)) {
+      filteredProducts[key] = products.filter((product) => {
+        // console.log(key);
+        // console.log(userCheckedTaxes[key]);
+        // console.log(product[key]);
+        // console.log(typeof product[key]);
+
+        if (typeof product[key] === "string") {
+          // if string, use .includes for that string
+          if (userCheckedTaxes[key].includes(product[key])) {
+            // console.log("true, type match");
+            return true;
+          } else {
+            // console.log("false, no match");
+
+            return false;
+          }
+        } else if (typeof product[key] === "object") {
+          // if object, loop over object and ...
+          // check if term is within both arrays...
+          // console.log(
+          //   product[key].some((r) => userCheckedTaxes[key].indexOf(r) >= 0)
+          // );
+
+          return product[key].some(
+            (r) => userCheckedTaxes[key].indexOf(r) >= 0
+          );
+        }
+      });
+    }
+  }
+
+  // now build one array from these results, whilst removing duplicate products with .concat
+  console.log(filteredProducts);
+
+  uniqueFilteredProducts = [];
+
+  for (const key in filteredProducts) {
+    if (filteredProducts.hasOwnProperty(key)) {
+      // arrays are here...
+      // console.log(filteredProducts[key]);
+
+      // loop over that array, and add to uniqueFilteredProducts
+      for (let index = 0; index < filteredProducts[key].length; index++) {
+        const element = filteredProducts[key][index];
+        // console.log(element);
+        uniqueFilteredProducts.push(element);
+      }
+    }
+  }
+
+  // console.log(uniqueFilteredProducts);
+
+  uniqueFilteredProducts = Array.from(new Set(uniqueFilteredProducts));
+
+  // console.log(uniqueFilteredProducts);
+
+  // this gives an array of all keys in that object
+  const filterTypes = Object.keys(filteredProducts);
+  // console.log(filterTypes);
+
+  const [firstKey, ...restKeys] = filterTypes;
+  // console.log(firstKey);
+  // console.log(restKeys);
+
+  let productsInRestKeys = [];
+
+  for (const key of restKeys) {
+    if (filteredProducts.hasOwnProperty(key)) {
+      // arrays are here...
+      // console.log(filteredProducts[key]);
+
+      // loop over that array, and add to uniqueFilteredProducts
+      for (let index = 0; index < filteredProducts[key].length; index++) {
+        const element = filteredProducts[key][index];
+        // console.log(element);
+        productsInRestKeys.push(element);
+      }
+    }
+  }
+
+  console.log(filteredProducts);
+
+  console.log(productsInRestKeys);
+
+  const matchingProducts = filteredProducts[firstKey].filter((product) => {
+    return productsInRestKeys.includes(product);
+  });
+
+  console.log(matchingProducts);
+
+  // now run products.filter on these products which exist in BOTH ?
+
+  // let uniqueColorsValuesArray = [];
+  // uniqueColorsArrays.forEach((color, i) => {
+  //   // for of loop because array
+  //   for (let index = 0; index < color.length; index++) {
+  //     const element = color[index];
+  //     uniqueColorsValuesArray.push(element);
+  //   }
+  // });
+  // uniqueColorsValuesArray = Array.from(new Set(uniqueColorsValuesArray));
+
+  // this woks for types
+  // filteredProducts = products.filter((product) => {
+  //   console.log(typeof userCheckedTaxes["types"]);
+
+  //   if (userCheckedTaxes["types"].includes(product.type)) {
+  //     console.log("true, type match");
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // });
+
+  renderProducts(matchingProducts);
 };
 
 const renderTaxes = (taxes, tax) => {
@@ -208,7 +337,7 @@ const renderTaxes = (taxes, tax) => {
 };
 
 renderTaxes(uniqueColorsValuesArray, "colors");
-renderTaxes(uniqueCategories, "types");
+renderTaxes(uniqueCategories, "type");
 
 const range = document.querySelector(".range__input");
 const rangeScaleLow = document.querySelector(".range__scale--low");
@@ -225,11 +354,7 @@ rangeScaleHigh.innerText = `$${highestProductPrice}`;
 range.setAttribute("min", lowestProductPrice);
 range.setAttribute("max", highestProductPrice);
 
-range.addEventListener("change", () => {
-  console.log(range.value);
-  const from = parseInt(0);
-  const to = parseInt(range.value);
-
+const applyFilters = (from, to) => {
   const filteredProducts = products.filter((product) => {
     // return true or false;
     if (product.price >= from && product.price <= to) {
@@ -240,4 +365,12 @@ range.addEventListener("change", () => {
   });
 
   renderProducts(filteredProducts);
+};
+
+range.addEventListener("change", () => {
+  console.log(range.value);
+  const from = parseInt(0);
+  const to = parseInt(range.value);
+
+  applyFilters(from, to);
 });
