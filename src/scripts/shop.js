@@ -1,3 +1,27 @@
+// main deliverables done
+// things I'd like to fix:
+/**
+ * Problem: When clicking pagination, the products array is loaded and all of the pagination
+ * for the products.json products are displayed.
+ *
+ * Solution: Somehow use selectedFilteredProducts array
+ *
+ */
+/**
+ * Problem: Range is independent of color and type checkbox lists (taxes)
+ *
+ * Solution: Integrate range into the dynamic funtions which update products via color and type
+ *
+ */
+/**
+ * Problem: Price sorting is also independent of color and type checkbox lists (taxes)
+ *
+ * Solution: Integrate range into the dynamic funtions which update products via color and type
+ *
+ */
+// I'd also like to make color and type appear/reappear on click
+// I'd like to get the range slider styled like the design and also update the min to high from the selectedFilteredProducts array
+
 // *********************
 // products stuff
 // *********************
@@ -40,10 +64,16 @@ const renderProduct = (product) => {
 
   const add = document.createElement("button");
   add.classList.add("product__add");
-  add.setAttribute("src", "images/icons/cart.svg");
-  add.setAttribute("width", "24");
-  add.setAttribute("height", "24");
-  add.setAttribute("alt", "add to cart");
+  const img = document.createElement("img");
+  img.setAttribute("src", "images/icons/cart.svg");
+  img.setAttribute("width", "24");
+  img.setAttribute("height", "24");
+  img.setAttribute("alt", "add to cart");
+  add.append(img);
+
+  add.addEventListener("click", () => {
+    addToCart(product);
+  });
   li.append(add);
 
   products_ul.append(li);
@@ -52,10 +82,134 @@ const renderProduct = (product) => {
 const renderProducts = (productsToRender) => {
   products_ul.innerHTML = "";
 
-  productsToRender.forEach((product) => {
-    renderProduct(product);
+  productsToRender
+    .filter((product, index) => {
+      const startingIndex = (pageNumber - 1) * quantityPerPage;
+      const endingIndex = startingIndex + quantityPerPage;
+      if (index >= startingIndex && index < endingIndex) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    .forEach((product) => {
+      renderProduct(product);
+    });
+
+  // update pagination links
+  paginationLinksToRender =
+    parseInt(productsToRender.length / quantityPerPage) + 1;
+
+  renderPaginationLinks(paginationLinksToRender);
+};
+
+// *********************
+// cart stuff
+// *********************
+const cart =
+  localStorage.getItem("cart") != null
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
+const cartQuantity = document.querySelector(".cart-quantity");
+const cartElement = document.querySelector(".c-header__menu-btn--cart");
+
+const renderNewCartSize = () => {
+  cartQuantity.innerText = cart.length;
+};
+
+renderNewCartSize();
+
+const addToCart = (product) => {
+  console.log("add to cart", product);
+  cart.push(product);
+  console.log(cart);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderNewCartSize();
+};
+
+// *********************
+// pagination
+// *********************
+const paginationLinksContainer = document.querySelector(".pagination");
+const quantityPerPage = 6;
+let paginationLinksToRender = parseInt(products.length / quantityPerPage) + 1;
+let pageNumber = 1;
+
+const renderPaginationLinks = (links) => {
+  paginationLinksContainer.innerHTML = "";
+  let counter = links + 1;
+
+  for (let index = 1; index < counter; index++) {
+    renderPaginationLink(index);
+  }
+
+  renderPaginationNextLink();
+
+  // paginationLinks event listener stuff
+  // add event listender for next button, which adds 1 to pageNumber and calls render products again
+  const nextButton = document.querySelector(".pagination .next");
+  nextButton.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    let currentLink = document.querySelector(
+      `.pagination li:nth-of-type(${pageNumber}) a`
+    );
+    console.log(currentLink);
+
+    if (pageNumber > products.length / quantityPerPage) {
+      return;
+    } else {
+      console.log(pageNumber);
+
+      currentLink.classList.remove("active");
+      let nextLink = document.querySelector(
+        `.pagination li:nth-of-type(${pageNumber + 1}) a`
+      );
+      nextLink.classList.add("active");
+      pageNumber++;
+      renderProducts(products);
+    }
+  });
+
+  const paginationLinks = document.querySelectorAll(".pagination a:not(.next)");
+
+  paginationLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      // remove all active links
+      paginationLinks.forEach((link) => {
+        link.classList.remove("active");
+      });
+      link.classList.add("active");
+      event.preventDefault();
+      pageNumber = event.target.innerText;
+
+      renderProducts(products);
+    });
   });
 };
+
+const renderPaginationNextLink = () => {
+  // render next link
+  const li = document.createElement("li");
+  const a = document.createElement("a");
+  a.innerHTML = ">";
+  a.classList.add("next");
+  li.append(a);
+  paginationLinksContainer.append(li);
+};
+
+const renderPaginationLink = (link) => {
+  const li = document.createElement("li");
+  const a = document.createElement("a");
+  a.innerText = link;
+  if (link === 1) {
+    a.classList.add("active");
+  }
+  li.append(a);
+  paginationLinksContainer.append(li);
+};
+
+// renderPaginationLinks(paginationLinksToRender);
 
 renderProducts(products);
 
@@ -156,6 +310,10 @@ const applyTaxEventListener = (input, tax) => {
         );
 
         userCheckedTaxes[tax].splice(index, 1);
+
+        if (userCheckedTaxes[tax].length === 0) {
+          delete userCheckedTaxes[tax];
+        }
       } else {
         // console.log("we do not have this value yet, add it");
         userCheckedTaxes[tax].push(value);
@@ -168,117 +326,142 @@ const applyTaxEventListener = (input, tax) => {
       userCheckedTaxes[tax] = checkedTax;
     }
 
-    // here (maybe passed to another function) I need to check if all checkboxes are empty
+    // here (maybe passed to another function) I need to check if userCheckedTaxes are empty
     // if so, render all products again...
-
-    console.log(userCheckedTaxes);
 
     applyTaxes(userCheckedTaxes);
   });
 };
 
+const productDoesMatchSelections = (product, selections) => {
+  // Object.keys retuns array of object properties
+  const properties = Object.keys(selections);
+  const matchingProperties = properties.filter((property) => {
+    if (Array.isArray(product[property])) {
+      // if property is an array (like colors) return true if array includes product
+      return product[property].some((propertyValue) =>
+        selections[property].includes(propertyValue)
+      );
+    } else if (typeof product[property] === "string") {
+      // if property is string, like types, return true if string is in product types array
+      return selections[property].includes(product[property]);
+    }
+  });
+
+  // if number of matching properties = the number of properties in the selected array (eg. 2 types colors)
+  // i.e. AND fitering
+  return matchingProperties.length === properties.length;
+
+  // this would be OR
+  // return matchingProperties.length > 0;
+};
+
 const applyTaxes = (userCheckedTaxes) => {
+  let filteredProducts = {};
+
   filteredProducts = products.filter((product) => {
     // iterate over object with keys, check if string (array) check if
     // write separate function, which returns
     return productDoesMatchSelections(product, userCheckedTaxes);
   });
 
-  // create empty array for filtered products
-  let filteredProducts = {};
+  console.log(filteredProducts);
 
-  // loop over userCheckedTaxes with a for in loop for an object...
-  for (const key in userCheckedTaxes) {
-    if (userCheckedTaxes.hasOwnProperty(key)) {
-      filteredProducts[key] = products.filter((product) => {
-        // console.log(key);
-        // console.log(userCheckedTaxes[key]);
-        // console.log(product[key]);
-        // console.log(typeof product[key]);
+  renderProducts(filteredProducts);
 
-        if (typeof product[key] === "string") {
-          // if string, use .includes for that string
-          if (userCheckedTaxes[key].includes(product[key])) {
-            // console.log("true, type match");
-            return true;
-          } else {
-            // console.log("false, no match");
+  // // create empty array for filtered products
+  // let filteredProducts = {};
 
-            return false;
-          }
-        } else if (typeof product[key] === "object") {
-          // if object, loop over object and ...
-          // check if term is within both arrays...
-          // console.log(
-          //   product[key].some((r) => userCheckedTaxes[key].indexOf(r) >= 0)
-          // );
+  // // loop over userCheckedTaxes with a for in loop for an object...
+  // for (const key in userCheckedTaxes) {
+  //   if (userCheckedTaxes.hasOwnProperty(key)) {
+  //     filteredProducts[key] = products.filter((product) => {
+  //       // console.log(key);
+  //       // console.log(userCheckedTaxes[key]);
+  //       // console.log(product[key]);
+  //       // console.log(typeof product[key]);
 
-          return product[key].some(
-            (r) => userCheckedTaxes[key].indexOf(r) >= 0
-          );
-        }
-      });
-    }
-  }
+  //       if (typeof product[key] === "string") {
+  //         // if string, use .includes for that string
+  //         if (userCheckedTaxes[key].includes(product[key])) {
+  //           // console.log("true, type match");
+  //           return true;
+  //         } else {
+  //           // console.log("false, no match");
 
-  // now build one array from these results, whilst removing duplicate products
-  // console.log(filteredProducts);
+  //           return false;
+  //         }
+  //       } else if (typeof product[key] === "object") {
+  //         // if object, loop over object and ...
+  //         // check if term is within both arrays...
+  //         // console.log(
+  //         //   product[key].some((r) => userCheckedTaxes[key].indexOf(r) >= 0)
+  //         // );
 
-  uniqueCheckedProducts = [];
+  //         return product[key].some(
+  //           (r) => userCheckedTaxes[key].indexOf(r) >= 0
+  //         );
+  //       }
+  //     });
+  //   }
+  // }
 
-  for (const key in filteredProducts) {
-    if (filteredProducts.hasOwnProperty(key)) {
-      // arrays are here...
-      // console.log(filteredProducts[key]);
+  // // now build one array from these results, whilst removing duplicate products
+  // // console.log(filteredProducts);
 
-      // loop over that array, and add to uniqueCheckedProducts
-      for (let index = 0; index < filteredProducts[key].length; index++) {
-        const element = filteredProducts[key][index];
-        // console.log(element);
-        uniqueCheckedProducts.push(element);
-      }
-    }
-  }
+  // // get unique products
+  // uniqueCheckedProducts = [];
 
-  // console.log(uniqueFilteredProducts);
+  // for (const key in filteredProducts) {
+  //   if (filteredProducts.hasOwnProperty(key)) {
+  //     // loop over that array, and add to uniqueCheckedProducts
+  //     for (let index = 0; index < filteredProducts[key].length; index++) {
+  //       const element = filteredProducts[key][index];
+  //       // console.log(element);
+  //       uniqueCheckedProducts.push(element);
+  //     }
+  //   }
+  // }
 
-  // uniqueFilteredProducts = Array.from(new Set(uniqueFilteredProducts));
+  // // console.log(uniqueFilteredProducts);
 
-  // console.log(uniqueFilteredProducts);
+  // // uniqueFilteredProducts = Array.from(new Set(uniqueFilteredProducts));
 
-  // this gives an array of all keys in that object
-  const filterTypes = Object.keys(filteredProducts);
-  // console.log(filterTypes);
+  // // console.log(uniqueFilteredProducts);
 
-  // make a new array, first value = first key, then rest of keys...
-  const [firstKey, ...restKeys] = filterTypes;
-  // console.log(firstKey);
+  // // this gives an array of all keys in that object
+  // const filterTypes = Object.keys(filteredProducts);
+  // // console.log(filterTypes);
 
-  // make array of rest of products, to compare with
-  let productsInRestKeys = [];
+  // // make a new array, first value = first key, then rest of keys...
+  // const [firstKey, ...restKeys] = filterTypes;
+  // // console.log(firstKey);
 
-  for (const key of restKeys) {
-    if (filteredProducts.hasOwnProperty(key)) {
-      for (let index = 0; index < filteredProducts[key].length; index++) {
-        const element = filteredProducts[key][index];
-        console.log(element);
+  // // make array of rest of products, to compare with
+  // let productsInRestKeys = [];
 
-        // console.log(element);
-        productsInRestKeys.push(filteredProducts[key][index]);
-      }
-    }
-  }
+  // for (const key of restKeys) {
+  //   if (filteredProducts.hasOwnProperty(key)) {
+  //     for (let index = 0; index < filteredProducts[key].length; index++) {
+  //       const element = filteredProducts[key][index];
+  //       console.log(element);
 
-  const matchingProducts = filteredProducts[firstKey].filter((product) => {
-    return productsInRestKeys.includes(product);
-  });
+  //       // console.log(element);
+  //       productsInRestKeys.push(filteredProducts[key][index]);
+  //     }
+  //   }
+  // }
+
+  // const matchingProducts = filteredProducts[firstKey].filter((product) => {
+  //   return productsInRestKeys.includes(product);
+  // });
 
   // if more than 1 tax selected, render matched products
-  if (filterTypes.length === 1) {
-    renderProducts(uniqueCheckedProducts);
-  } else {
-    renderProducts(matchingProducts);
-  }
+  // if (filterTypes.length === 1) {
+  //   renderProducts(uniqueCheckedProducts);
+  // } else {
+  //   renderProducts(matchingProducts);
+  // }
 };
 
 const renderTaxes = (taxes, tax) => {

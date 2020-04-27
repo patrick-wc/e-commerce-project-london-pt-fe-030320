@@ -155,6 +155,27 @@ main,
   }
 }
 
+.cart-quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
+  line-height: 14px;
+
+  @include mq($from: wide) {
+    top: 2px;
+    right: -8px;
+  }
+}
+
 .c-header__menu-btn--cart--has-items:before {
   content: "2";
   display: flex;
