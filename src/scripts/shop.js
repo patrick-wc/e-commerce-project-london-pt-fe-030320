@@ -141,7 +141,6 @@ const userCheckedTaxes = {};
 
 const applyTaxEventListener = (input, tax) => {
   input.addEventListener("change", (event) => {
-    console.log(`input changed ${event.target.value}`);
     const value = event.target.value;
 
     if (userCheckedTaxes.hasOwnProperty(tax)) {
@@ -169,8 +168,10 @@ const applyTaxEventListener = (input, tax) => {
       userCheckedTaxes[tax] = checkedTax;
     }
 
-    // if both userCheckedTaxes[key]'s are blank, re-render all products again (reset filter)
-    // otherwise, applyFilters to them:
+    // here (maybe passed to another function) I need to check if all checkboxes are empty
+    // if so, render all products again...
+
+    console.log(userCheckedTaxes);
 
     applyTaxes(userCheckedTaxes);
   });
@@ -220,28 +221,28 @@ const applyTaxes = (userCheckedTaxes) => {
     }
   }
 
-  // now build one array from these results, whilst removing duplicate products with .concat
-  console.log(filteredProducts);
+  // now build one array from these results, whilst removing duplicate products
+  // console.log(filteredProducts);
 
-  uniqueFilteredProducts = [];
+  uniqueCheckedProducts = [];
 
   for (const key in filteredProducts) {
     if (filteredProducts.hasOwnProperty(key)) {
       // arrays are here...
       // console.log(filteredProducts[key]);
 
-      // loop over that array, and add to uniqueFilteredProducts
+      // loop over that array, and add to uniqueCheckedProducts
       for (let index = 0; index < filteredProducts[key].length; index++) {
         const element = filteredProducts[key][index];
         // console.log(element);
-        uniqueFilteredProducts.push(element);
+        uniqueCheckedProducts.push(element);
       }
     }
   }
 
   // console.log(uniqueFilteredProducts);
 
-  uniqueFilteredProducts = Array.from(new Set(uniqueFilteredProducts));
+  // uniqueFilteredProducts = Array.from(new Set(uniqueFilteredProducts));
 
   // console.log(uniqueFilteredProducts);
 
@@ -249,61 +250,35 @@ const applyTaxes = (userCheckedTaxes) => {
   const filterTypes = Object.keys(filteredProducts);
   // console.log(filterTypes);
 
+  // make a new array, first value = first key, then rest of keys...
   const [firstKey, ...restKeys] = filterTypes;
   // console.log(firstKey);
-  // console.log(restKeys);
 
+  // make array of rest of products, to compare with
   let productsInRestKeys = [];
 
   for (const key of restKeys) {
     if (filteredProducts.hasOwnProperty(key)) {
-      // arrays are here...
-      // console.log(filteredProducts[key]);
-
-      // loop over that array, and add to uniqueFilteredProducts
       for (let index = 0; index < filteredProducts[key].length; index++) {
         const element = filteredProducts[key][index];
+        console.log(element);
+
         // console.log(element);
-        productsInRestKeys.push(element);
+        productsInRestKeys.push(filteredProducts[key][index]);
       }
     }
   }
-
-  console.log(filteredProducts);
-
-  console.log(productsInRestKeys);
 
   const matchingProducts = filteredProducts[firstKey].filter((product) => {
     return productsInRestKeys.includes(product);
   });
 
-  console.log(matchingProducts);
-
-  // now run products.filter on these products which exist in BOTH ?
-
-  // let uniqueColorsValuesArray = [];
-  // uniqueColorsArrays.forEach((color, i) => {
-  //   // for of loop because array
-  //   for (let index = 0; index < color.length; index++) {
-  //     const element = color[index];
-  //     uniqueColorsValuesArray.push(element);
-  //   }
-  // });
-  // uniqueColorsValuesArray = Array.from(new Set(uniqueColorsValuesArray));
-
-  // this woks for types
-  // filteredProducts = products.filter((product) => {
-  //   console.log(typeof userCheckedTaxes["types"]);
-
-  //   if (userCheckedTaxes["types"].includes(product.type)) {
-  //     console.log("true, type match");
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // });
-
-  renderProducts(matchingProducts);
+  // if more than 1 tax selected, render matched products
+  if (filterTypes.length === 1) {
+    renderProducts(uniqueCheckedProducts);
+  } else {
+    renderProducts(matchingProducts);
+  }
 };
 
 const renderTaxes = (taxes, tax) => {
@@ -373,4 +348,22 @@ range.addEventListener("change", () => {
   const to = parseInt(range.value);
 
   applyFilters(from, to);
+});
+
+const sortProductsSelect = document.querySelector("#sort_products");
+sortProductsSelect.addEventListener("change", (event) => {
+  const value = event.target.value;
+  if (value === "default") {
+    renderProducts(products);
+  } else if (value === "price_highest") {
+    const productsSortedByHighestPrice = [...products].sort(
+      (a, b) => b.price - a.price
+    );
+    renderProducts(productsSortedByHighestPrice);
+  } else if (value === "price_lowest") {
+    const productsSortedByLowestPrice = [...products].sort(
+      (a, b) => a.price - b.price
+    );
+    renderProducts(productsSortedByLowestPrice);
+  }
 });
