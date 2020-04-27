@@ -101,6 +101,7 @@ const renderProducts = (productsToRender) => {
     parseInt(productsToRender.length / quantityPerPage) + 1;
 
   renderPaginationLinks(paginationLinksToRender);
+  setPaginationLinkEventHandlers(productsToRender);
 };
 
 // *********************
@@ -144,7 +145,9 @@ const renderPaginationLinks = (links) => {
   }
 
   renderPaginationNextLink();
+};
 
+const setPaginationLinkEventHandlers = (products) => {
   // paginationLinks event listener stuff
   // add event listender for next button, which adds 1 to pageNumber and calls render products again
   const nextButton = document.querySelector(".pagination .next");
