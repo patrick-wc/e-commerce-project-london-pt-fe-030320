@@ -58,9 +58,8 @@
             >
           </li>
           <li>
-            <button
-              class="c-header__menu-btn c-header__menu-btn--cart c-header__menu-btn--cart--has-items"
-            >
+            <button class="c-header__menu-btn c-header__menu-btn--cart">
+              <span class="cart-quantity">2</span>
               <svg
                 width="25"
                 height="26"
@@ -132,74 +131,149 @@
         </form>
       </header>
 
-      <div class="c-carousel">
-        <div class="c-carousel__items">
-          <figure class="c-carousel__item c-carousel__item--01">
+      <section class="c-product-page">
+        <div class="c-carousel c-product-page__carousel">
+          <div class="c-carousel__items">
+            <figure class="c-carousel__item c-carousel__item--01">
+              <img
+                src="images/magazine/product-image.jpg"
+                width="683"
+                height="330"
+                alt="Sofa"
+              />
+            </figure>
+            <figure class="c-carousel__item c-carousel__item--02">
+              <img
+                src="images/magazine/product-image.jpg"
+                width="683"
+                height="330"
+                alt="Sofa"
+              />
+            </figure>
+            <figure class="c-carousel__item c-carousel__item--03">
+              <img
+                src="images/magazine/product-image.jpg"
+                width="683"
+                height="330"
+                alt="Sofa"
+              />
+            </figure>
+            <figure class="c-carousel__item c-carousel__item--04">
+              <img
+                src="images/magazine/product-image.jpg"
+                width="683"
+                height="330"
+                alt="Sofa"
+              />
+            </figure>
+          </div>
+
+          <div class="c-carousel-thumbs">
+            <button class="c-carousel-thumbs__arrow c-carousel__arrow--prev">
+              <img
+                src="images/icons/carousel-arrow-small.svg"
+                width="8"
+                height="16"
+                alt="arrow next"
+              />
+            </button>
+
             <img
-              src="images/home-carousel-1.jpg"
-              width="1326"
-              height="560"
-              alt="Sofa"
+              class="c-carousel-thumbs__img"
+              src="images/magazine/product-thumb-1.jpg"
+              width="80"
+              height="30"
+              alt="thumb 1"
             />
-            <figcaption>
-              <h1 class="c-carousel__title">
-                Create Your Calm
-              </h1>
-              <h2 class="c-carousel__sub-title">
-                Relax right here
-              </h2>
-            </figcaption>
-          </figure>
-          <figure class="c-carousel__item c-carousel__item--02">
             <img
-              src="images/home-carousel-2.jpg"
-              width="1326"
-              height="560"
-              alt="Sofa"
+              class="c-carousel-thumbs__img"
+              src="images/magazine/product-thumb-2.jpg"
+              width="80"
+              height="30"
+              alt="thumb 2"
             />
-            <figcaption>
-              <h2 class="c-carousel__title">
-                Create Your Calm 2
-              </h2>
-              <h3 class="c-carousel__sub-title">
-                Relax right here 2
-              </h3>
-            </figcaption>
-          </figure>
-          <figure class="c-carousel__item c-carousel__item--03">
             <img
-              src="images/home-carousel-1.jpg"
-              width="1326"
-              height="560"
-              alt="Sofa"
+              class="c-carousel-thumbs__img"
+              src="images/magazine/product-thumb-3.jpg"
+              width="80"
+              height="30"
+              alt="thumb 3"
             />
-            <figcaption>
-              <h2 class="c-carousel__title">
-                Create Your Calm 3
-              </h2>
-              <h3 class="c-carousel__sub-title">
-                Relax right here 3
-              </h3>
-            </figcaption>
-          </figure>
+            <img
+              class="c-carousel-thumbs__img"
+              src="images/magazine/product-thumb-4.jpg"
+              width="80"
+              height="30"
+              alt="thumb 4"
+            />
+
+            <button class="c-carousel-thumbs__arrow c-carousel__arrow--next">
+              <img
+                src="images/icons/carousel-arrow-small.svg"
+                width="8"
+                height="16"
+                alt="arrow prev"
+              />
+            </button>
+          </div>
         </div>
-        <button class="c-carousel__arrow c-carousel__arrow--next">
-          <img
-            src="images/icons/carousel-arrow.svg"
-            width="30"
-            height="56"
-            alt="arrow next"
-          />
-        </button>
-        <button class="c-carousel__arrow c-carousel__arrow--prev">
-          <img
-            src="images/icons/carousel-arrow.svg"
-            width="30"
-            height="56"
-            alt="arrow prev"
-          />
-        </button>
-      </div>
+
+        <div class="c-product-page__info">
+          <h1 class="c-product-page__info__title">Branagh</h1>
+          <p class="c-product-page__info__desc">
+            branagh left hand facing chaise and corner sofa, electric blue
+            velvet
+          </p>
+          <p class="c-product-page__info__price">$90</p>
+          <p class="c-product-page__info__delivery-info">
+            Dispatched in 2 - 3 weeks<span>Only 4 left</span>
+          </p>
+
+          <div class="c-product-page__info__colours">
+            <button
+              class="c-product-page__info__colours__colour c-product-page__info__colours__colour--1"
+            ></button>
+            <button
+              class="c-product-page__info__colours__colour c-product-page__info__colours__colour--2"
+            ></button>
+            <button
+              class="c-product-page__info__colours__colour c-product-page__info__colours__colour--3"
+            ></button>
+            <button
+              class="c-product-page__info__colours__colour c-product-page__info__colours__colour--4"
+            ></button>
+          </div>
+
+          <button class="c-product-page__info__add-to-basket">
+            Add to Basket
+          </button>
+
+          <button class="c-product-page__info__details js-button">
+            Details
+          </button>
+          <ul class="c-product-page__info__details-text js-button__text">
+            <li>
+              – Dimensions: W: 267 cm D: 102-241 cm H: 82 cm
+            </li>
+            <li>
+              – Seat dimensions: W: 217 cm D: 83 cm H: 43 cm
+            </li>
+            <li>
+              – Weight: 145 kg
+            </li>
+            <li>
+              – Materials: pine and engineered wood frame, beech plinth
+            </li>
+            <li>
+              – Filling materials: feather and fibre mix in back, coil springs
+              and feathers in seat
+            </li>
+            <li>
+              – Comfort level: soft
+            </li>
+          </ul>
+        </div>
+      </section>
     </main>
 
     <footer class="c-footer">
@@ -253,6 +327,8 @@
     <script src="products.js"></script>
     <!-- <script src="dist/index.min.js"></script> -->
     <script src="src/scripts/carousel.js"></script>
-    <script src="src/scripts/index.js"></script>
+    <script src="src/scripts/cart.js"></script>
+    <script src="src/scripts/details.js"></script>
+    <script src="src/scripts/magazine.js"></script>
   </body>
 </html>
